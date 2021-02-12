@@ -7,8 +7,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -34,8 +35,8 @@ public class HelloController {
 		return restTemplate.getForObject(url, Person.class);
 	}
 	
-	@GetMapping("findPerson")
-	public Person findPerson(@RequestParam Map<String, String> param) {
+	@PostMapping("findPerson")
+	public Person findPerson(@RequestBody Map<String, String> param) {
 		String url = "http://Service-Hello/findPerson";
 		return restTemplate.postForObject(url, param, Person.class);
 	}
